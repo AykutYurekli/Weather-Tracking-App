@@ -1,5 +1,9 @@
 import requests
 import tkinter as tk
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 window = tk.Tk()
 window.title("Weather Tracking")
@@ -27,7 +31,7 @@ weather_image = None
 def click_button():
     global weather_image
     city = city_entry.get()
-    API_KEY = "36cf9743c1575137308f1787632d2628"
+    API_KEY = os.getenv("API_KEY")
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric&lang=tr"
     r = requests.get(url)
     data = r.json()
